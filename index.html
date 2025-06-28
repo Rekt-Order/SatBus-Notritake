@@ -16,11 +16,26 @@
             line-height: 1.6;
             color: #333;
             background-color: #f5f5f5;
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
         }
 
         .container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
             max-width: 1200px;
             margin: 0 auto;
+        }
+
+        .fixed-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background-color: #f5f5f5;
             padding: 20px;
         }
 
@@ -30,7 +45,7 @@
             text-align: center;
             padding: 30px 20px;
             border-radius: 10px;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
@@ -48,8 +63,17 @@
             display: flex;
             justify-content: center;
             gap: 20px;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             flex-wrap: wrap;
+        }
+
+        .content-area {
+            flex: 1;
+            overflow-y: auto;
+            padding-top: 220px;
+            padding-left: 20px;
+            padding-right: 20px;
+            padding-bottom: 20px;
         }
 
         .route-badge {
@@ -133,8 +157,14 @@
         }
 
         @media (max-width: 768px) {
-            .container {
+            .fixed-header {
                 padding: 15px;
+            }
+            
+            .content-area {
+                padding-top: 200px;
+                padding-left: 15px;
+                padding-right: 15px;
             }
             
             .header h1 {
@@ -159,16 +189,20 @@
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <h1>ノリタケの森 → 名古屋駅</h1>
-            <p>バス時刻表（土曜日）</p>
+        <div class="fixed-header">
+            <div class="header">
+                <h1>ノリタケの森 → 名古屋駅</h1>
+                <p>バス時刻表（土曜日）</p>
+            </div>
+
+            <div class="route-legend">
+                <div class="route-badge route-25">名駅25系統</div>
+                <div class="route-badge route-11">名駅11系統</div>
+                <div class="route-badge route-13">名駅13系統</div>
+            </div>
         </div>
 
-        <div class="route-legend">
-            <div class="route-badge route-25">名駅25系統</div>
-            <div class="route-badge route-11">名駅11系統</div>
-            <div class="route-badge route-13">名駅13系統</div>
-        </div>
+        <div class="content-area">
 
         <div class="timetable-section">
             <div class="hour-header">6時台</div>
@@ -688,9 +722,10 @@
             </div>
         </div>
 
-        <div class="footer">
-            <p><strong>備考：</strong> 2025年6月28日現在の時刻表</p>
-            <p>名古屋市交通局</p>
+            <div class="footer">
+                <p><strong>備考：</strong> 2025年6月28日現在の時刻表</p>
+                <p>名古屋市交通局</p>
+            </div>
         </div>
     </div>
 </body>
